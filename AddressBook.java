@@ -30,7 +30,7 @@ public class AddressBook {
      *
      * @param entry La entrada de dirección a eliminar.
      */
-    public void removeEntry(AddressEntry entry) {
+    public void deleteEntry(AddressEntry entry) {
         entries.remove(entry);
     }
 
@@ -41,7 +41,16 @@ public class AddressBook {
      * @param lastName El apellido a buscar.
      * @return Una lista de entradas de direcciones que coinciden con el apellido.
      */
-    public List<AddressEntry> searchByLastName(String lastName) {
+    public AddressEntry searchEntryByLastName(String lastName) {
+        for (AddressEntry entry : entries) {
+            if (entry.getLastName().equalsIgnoreCase(lastName)) {
+                return entry;
+            }
+        }
+        return null;
+    }
+  
+    public List<AddressEntry> searchEntriesByLastName(String lastName) {
         List<AddressEntry> matchingEntries = new ArrayList<>();
         for (AddressEntry entry : entries) {
             if (entry.getLastName().startsWith(lastName)) {
@@ -56,7 +65,7 @@ public class AddressBook {
      *
      * @return Una lista de entradas de direcciones ordenadas por apellido.
      */
-    public List<AddressEntry> getEntriesSortedByLastName() {
+    public List<AddressEntry> getEntriesOrderedByLastName() {
         List<AddressEntry> sortedEntries = new ArrayList<>(entries);
         Collections.sort(sortedEntries, (a, b) -> a.getLastName().compareToIgnoreCase(b.getLastName()));
         return sortedEntries;
