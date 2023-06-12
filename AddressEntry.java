@@ -1,86 +1,60 @@
-/**
- * La clase AddressEntry representa una única entrada de información de dirección/contacto
- * en la libreta de direcciones.
- */
-public class AddressEntry {
+class AddressEntry implements Comparable<AddressEntry> {
+    private static int nextId = 1;
+
+    private int id;
     private String firstName;
     private String lastName;
     private Address address;
-    private String email;
-    private String phone;
 
-    /**
-     * Constructor de la clase AddressEntry que acepta los valores para inicializar las variables.
-     *
-     * @param firstName   El nombre del contacto.
-     * @param lastName    El apellido del contacto.
-     * @param address     La dirección del contacto.
-     * @param email       El correo electrónico del contacto.
-     * @param phone       El número de teléfono del contacto.
-     */
-    public AddressEntry(String firstName, String lastName, Address address, String email, String phone) {
+    public AddressEntry(String firstName, String lastName, Address address) {
+        this.id = nextId++;
         this.firstName = firstName;
         this.lastName = lastName;
         this.address = address;
-        this.email = email;
-        this.phone = phone;
     }
 
-    /**
-     * Devuelve el nombre del contacto.
-     *
-     * @return El nombre del contacto.
-     */
+    public AddressEntry(String street, String city, String state, String postalCode) {
+        this.id = nextId++;
+        this.firstName = "";
+        this.lastName = "";
+        this.address = new Address(street, city, state, postalCode);
+    }
+
+    public int getId() {
+        return id;
+    }
+
     public String getFirstName() {
         return firstName;
     }
 
-    /**
-     * Devuelve el apellido del contacto.
-     *
-     * @return El apellido del contacto.
-     */
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
     public String getLastName() {
         return lastName;
     }
 
-    /**
-     * Devuelve la dirección del contacto.
-     *
-     * @return La dirección del contacto.
-     */
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
     public Address getAddress() {
         return address;
     }
 
-    /**
-     * Devuelve el correo electrónico del contacto.
-     *
-     * @return El correo electrónico del contacto.
-     */
-    public String getEmail() {
-        return email;
+    public void setAddress(Address address) {
+        this.address = address;
     }
 
-    /**
-     * Devuelve el número de teléfono del contacto.
-     *
-     * @return El número de teléfono del contacto.
-     */
-    public String getPhone() {
-        return phone;
-    }
-
-    /**
-     * Devuelve una representación en forma de cadena de la entrada de dirección.
-     *
-     * @return Una cadena que contiene toda la información de contacto.
-     */
     @Override
     public String toString() {
-        return "Nombre: " + firstName + " " + lastName + "\n" +
-                "Dirección: " + address.toString() + "\n" +
-                "Correo electrónico: " + email + "\n" +
-                "Teléfono: " + phone;
+        return "ID: " + id + ", Name: " + firstName + " " + lastName + ", Address: " + address.toString();
+    }
+
+    @Override
+    public int compareTo(AddressEntry entry) {
+        return this.getLastName().compareTo(entry.getLastName());
     }
 }
