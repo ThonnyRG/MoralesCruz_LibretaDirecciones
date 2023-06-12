@@ -65,7 +65,11 @@ public class AddressEntry {
     }
 
     public void setPostalCode(String postalCode) {
-        this.postalCode = postalCode;
+        if (isValidPostalCode(postalCode)) {
+            this.postalCode = postalCode;
+        } else {
+            System.out.println("Entrada inválida: el código postal debe contener solo dígitos.");
+        }
     }
 
     public String getEmail() {
@@ -81,9 +85,20 @@ public class AddressEntry {
     }
 
     public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
+        if (isValidPhoneNumber(phoneNumber)) {
+            this.phoneNumber = phoneNumber;
+        } else {
+            System.out.println("Entrada inválida: el número de teléfono debe contener solo dígitos.");
+        }
     }
 
+    private boolean isValidPostalCode(String postalCode) {
+        return postalCode.matches("\\d+"); // Verifica si el código postal contiene solo dígitos
+    }
+
+    private boolean isValidPhoneNumber(String phoneNumber) {
+        return phoneNumber.matches("\\d+"); // Verifica si el número de teléfono contiene solo dígitos
+    }
     @Override
     public String toString() {
         return "Name: " + firstName + " " + lastName + "\n" +
