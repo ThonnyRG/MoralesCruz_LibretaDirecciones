@@ -1,3 +1,6 @@
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.List;
 import java.util.Scanner;
 
@@ -63,9 +66,34 @@ public class Menu {
         } while (choice != 'f');
     }
 private void loadEntriesFromFile() {
-        System.out.println("Cargando entradas desde un archivo...");
-        // Lógica para cargar las entradas desde un archivo
-        // addressBook.loadEntriesFromFile(fileName);
+        System.out.print("Ingrese el nombre del archivo: ");
+        Scanner scanner = new Scanner(System.in);
+        String filename = scanner.nextLine();
+
+        try (BufferedReader reader = new BufferedReader(new FileReader(filename))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                String[] entryData = line.split(";");
+
+                if (entryData.length == 8) {
+                    String firstName = entryData[0].trim();
+                    String lastName = entryData[1].trim();
+                    String street = entryData[2].trim();
+                    String city = entryData[3].trim();
+                    String state = entryData[4].trim();
+                    String zipCode = entryData[5].trim();
+                    String email = entryData[6].trim();
+                    String phone = entryData[7].trim();
+
+                    Address address = new Address(street, city, state, zipCode);
+                    AddressEntry entry = new AddressEntry(firstName, lastName, address, email, phone);
+                    addressBook.addEntry(entry);
+                }
+            }
+            System.out.println("Las entradas se cargaron correctamente desde el archivo.");
+        } catch (IOException e) {
+            System.out.println("Error al leer el archivo: " + e.getMessage());
+        }
     }
 
     private void addEntry() {
@@ -151,13 +179,10 @@ private void loadEntriesFromFile() {
     }
 
     private void showEntriesOrderedByLastName() {
-        System.out.println("Mostrar todas las entradas ordenadas por apellido:");
-        List<AddressEntry> entries = addressBook.getEntriesOrderedByLastName();
-        
+ List<AddressEntry> entries = addressBook.getEntriesOrderedByLastName();
         if (entries.isEmpty()) {
             System.out.println("No hay entradas para mostrar.");
         } else {
-            System.out.println("Las entradas se muestran a continuación:");
             for (AddressEntry entry : entries) {
                 System.out.println(entry);
             }

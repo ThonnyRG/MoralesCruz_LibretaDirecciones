@@ -1,0 +1,30 @@
+1: Juan Arias
+Revolución 22
+Minatitlán, Ver. cp. 94233
+juan@gmail.com
+922-8024552
+2: José Camacho
+Independencia 142
+Xalapa, Ver. cp. 96400
+josec@gmail.com
+928-4236652
+3: Maria Flores
+Roble 18
+Coatzacoalcos, Ver. 96535
+maria@gmail.com
+921-4233245
+4: Norma Perez
+Juan Escutia 1022
+Minatitlán, Ver. 95000
+norma@gmail.com
+922-66665555
+5: Manuel Soto
+Allende 100
+Coatzacoalcos, Ver. 96400
+manuel@gmail.com
+921-4444333
+6: Roger Zavaleta
+Roman Marin 102
+Nanchital, Ver. 96300
+roger@gmail.com
+923-2222222
