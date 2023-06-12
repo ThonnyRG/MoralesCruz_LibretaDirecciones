@@ -16,20 +16,16 @@ public class Menu {
     private List<AddressEntry> addressBook;
 
     /**
-     * Constructor de la clase Menu que cre un archivo para crear un txt de las direcciones.
-     *
-     * @param addressBook La libreta de direcciones.
+     * Constructor de la clase Menu que crea una libreta de direcciones vacía.
      */
     public Menu() {
         addressBook = new ArrayList<>();
     }
 
-
     /**
      * Muestra las opciones del menú y solicita al usuario que ingrese una opción.
      */
     public void displayMenu() {
-        Scanner scanner = new Scanner(System.in);
         char choice;
         do {
             System.out.println("\nMenú:");
@@ -43,23 +39,19 @@ public class Menu {
             choice = scanner.nextLine().charAt(0);
             switch (choice) {
                 case 'a':
-                  // Lógica para cargar entradas desde un archivo
-                  loadEntriesFromFile();
+                    loadEntriesFromFile();
                     break;
                 case 'b':
-                  addEntry();
+                    addEntry();
                     break;
                 case 'c':
-                  // Lógica para eliminar una entrada
-                  deleteEntry();
+                    deleteEntry();
                     break;
                 case 'd':
-                  // Lógica para buscar entradas por apellido
-                  searchEntries();
+                    searchEntries();
                     break;
                 case 'e':
-                    // Lógica para mostrar todas las entradas ordenadas por apellido
-                  displayEntries();
+                    displayEntries();
                     break;
                 case 'f':
                     System.out.println("Saliendo del programa...");
@@ -68,23 +60,22 @@ public class Menu {
                     System.out.println("Opción inválida. Intente nuevamente.");
                     break;
             }
-          System.out.println();
+            System.out.println();
         } while (choice != 'f');
     }
-  
+
     private void loadEntriesFromFile() {
-        Scanner scanner = new Scanner(System.in);
         System.out.print("Ingrese el nombre del archivo de texto: ");
         String fileName = scanner.nextLine();
 
         try {
             File file = new File(fileName);
-            scanner = new Scanner(file);
+            Scanner fileScanner = new Scanner(file);
 
             addressBook.clear(); // Clear the existing entries
 
-            while (scanner.hasNextLine()) {
-                String line = scanner.nextLine();
+            while (fileScanner.hasNextLine()) {
+                String line = fileScanner.nextLine();
                 String[] parts = line.split(";");
 
                 if (parts.length == 4) {
@@ -93,7 +84,7 @@ public class Menu {
                     String state = parts[2];
                     String postalCode = parts[3];
 
-                    AddressEntry entry = new AddressEntry(street, city, state, postalCode);
+                    AddressEntry entry = new AddressEntry("", "", street, city, state, postalCode, "", "");
                     addressBook.add(entry);
                 }
             }
@@ -120,15 +111,24 @@ public class Menu {
     System.out.print("Ingrese el código postal: ");
     String postalCode = scanner.nextLine();
 
-    AddressEntry entry = new AddressEntry(firstName, lastName, new Address(street, city, "", postalCode));
+    System.out.print("Ingrese el correo electrónico: ");
+    String email = scanner.nextLine();
+
+    System.out.print("Ingrese el número de teléfono: ");
+    String phoneNumber = scanner.nextLine();
+
+    System.out.print("Ingrese el estado: ");
+    String state = scanner.nextLine();
+
+   AddressEntry entry = new AddressEntry(firstName, lastName, street, city, state, postalCode, email, phoneNumber);
+
     addressBook.add(entry);
 
-    System.out.println("La entrada se agregó correctamente.");
-}
-
+    System.out.println("La entrada se está guardando...");
+    saveEntries();
+    }
 
     private void deleteEntry() {
-        Scanner scanner = new Scanner(System.in);
         System.out.print("Ingrese el inicio del apellido del usuario: ");
         String query = scanner.nextLine();
 
@@ -160,7 +160,6 @@ public class Menu {
     }
 
     private void searchEntries() {
-        Scanner scanner = new Scanner(System.in);
         System.out.print("Ingrese el inicio del apellido del usuario: ");
         String query = scanner.nextLine();
 
@@ -181,26 +180,40 @@ public class Menu {
     }
 
     private void displayEntries() {
-            try {
-        FileWriter writer = new FileWriter(FILE_PATH);
+        Collections.sort(addressBook, (entry1, entry2) -> entry1.getLastName().compareToIgnoreCase(entry2.getLastName()));
+
+        System.out.println("Todas las entradas ordenadas por apellido:");
         for (AddressEntry entry : addressBook) {
-            Address address = entry.getAddress();
-            String line = address.getStreet() + ";" + address.getCity() + ";" +
-                    address.getState() + ";" + address.getPostalCode() + "\n";
+            System.out.println(entry);
+        }
+    }
+
+private void saveEntries() {
+    try {
+        FileWriter writer = new FileWriter(FILE_PATH);
+        int count = 1;
+        for (AddressEntry entry : addressBook) {
+            String line = count + ": " + entry.getFirstName() + " " + entry.getLastName() + "\n" +
+                    entry.getStreet() + "\n" +
+                    entry.getCity() + ", " + entry.getState() + " cp. " + entry.getPostalCode() + "\n" +
+                    entry.getEmail() + "\n" +
+                    entry.getPhoneNumber() + "\n\n";
             writer.write(line);
+            count++;
         }
         writer.close();
         System.out.println("Las entradas se han guardado correctamente en el archivo.");
     } catch (IOException e) {
         System.out.println("Error al guardar las entradas en el archivo: " + e.getMessage());
     }
-    }
+}
+
 
     private void displaySearchResults(List<AddressEntry> entries) {
-      int count = 1;
-      for (AddressEntry entry : entries) {
-        System.out.println(count + ") " + entry);
-          count++;
-        } 
+        int count = 1;
+        for (AddressEntry entry : entries) {
+            System.out.println(count + ") " + entry);
+            count++;
+        }
     }
 }

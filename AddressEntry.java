@@ -1,27 +1,23 @@
-class AddressEntry implements Comparable<AddressEntry> {
-    private static int nextId = 1;
-
-    private int id;
+public class AddressEntry {
     private String firstName;
     private String lastName;
-    private Address address;
+    private String street;
+    private String city;
+    private String state;
+    private String postalCode;
+    private String email;
+    private String phoneNumber;
 
-    public AddressEntry(String firstName, String lastName, Address address) {
-        this.id = nextId++;
+    public AddressEntry(String firstName, String lastName, String street, String city, String state,
+                        String postalCode, String email, String phoneNumber) {
         this.firstName = firstName;
         this.lastName = lastName;
-        this.address = address;
-    }
-
-    public AddressEntry(String street, String city, String state, String postalCode) {
-        this.id = nextId++;
-        this.firstName = "";
-        this.lastName = "";
-        this.address = new Address(street, city, state, postalCode);
-    }
-
-    public int getId() {
-        return id;
+        this.street = street;
+        this.city = city;
+        this.state = state;
+        this.postalCode = postalCode;
+        this.email = email;
+        this.phoneNumber = phoneNumber;
     }
 
     public String getFirstName() {
@@ -40,21 +36,60 @@ class AddressEntry implements Comparable<AddressEntry> {
         this.lastName = lastName;
     }
 
-    public Address getAddress() {
-        return address;
+    public String getStreet() {
+        return street;
     }
 
-    public void setAddress(Address address) {
-        this.address = address;
+    public void setStreet(String street) {
+        this.street = street;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
+    }
+
+    public String getPostalCode() {
+        return postalCode;
+    }
+
+    public void setPostalCode(String postalCode) {
+        this.postalCode = postalCode;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 
     @Override
     public String toString() {
-        return "ID: " + id + ", Name: " + firstName + " " + lastName + ", Address: " + address.toString();
-    }
-
-    @Override
-    public int compareTo(AddressEntry entry) {
-        return this.getLastName().compareTo(entry.getLastName());
+        return "Name: " + firstName + " " + lastName + "\n" +
+                "Address: " + street + "\n" +
+                city + ", " + state + " cp. " + postalCode + "\n" +
+                "Email: " + email +"\n" +
+                "Phone: " + phoneNumber;
     }
 }
