@@ -1,12 +1,3 @@
-1: José Camacho
-Independencia 142
-Xalapa, Ver. 96400
-josec@gmail.com
-928-4236652
+Nombre: Jesus Navarrez, Apellido: Espinoza Rojas, Calle: Abasolo, Ciudad: Los Mochis, Estado: Sinaloa, Código Postal: 827323, Correo Electrónico: jelty@gmail.com, Teléfono: 28973
 
-2: Maria Flores
-Juan Escutia 1022
-Coatzacoalcos, Ver. 96535
-maria@gmail.com
-921-4233245
-
+Nombre: Diego Jair, Apellido: Dominguez de leon, Calle: Av. Univeersidad, Ciudad: Coatzacoalcos, Estado: Veracruz, Código Postal: 96566, Correo Electrónico: soydiego@gmail.com, Teléfono: 922377233

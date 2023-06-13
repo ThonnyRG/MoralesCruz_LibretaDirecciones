@@ -1,6 +1,24 @@
-1: El Macho
-isjdiajdd
-dijjadijawdiajwd, dijdajd cp. 112333
-jddaiwdjwa
-iawjdadjwaw
+Nombre: Diego Jair Dominguez de leon
+Calle: Av. Univeersidad
+Ciudad: Coatzacoalcos
+Estado: Veracruz
+Código Postal: 96566
+Correo Electrónico: soydiego@gmail.com
+Teléfono: 922377233
+
+Nombre: Jesus Navarrez Espinoza Rojas
+Calle: Abasolo
+Ciudad: Los Mochis
+Estado: Sinaloa
+Código Postal: 827323
+Correo Electrónico: jelty@gmail.com
+Teléfono: 28973
+
+Nombre: Hugo Sánchez
+Calle: Miguel Hidalgo
+Ciudad: Tamaulipas
+Estado: Mexico
+Código Postal: 8573
+Correo Electrónico: soyhhugo@gmail.com
+Teléfono: 83382
 

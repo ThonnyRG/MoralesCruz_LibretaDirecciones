@@ -3,8 +3,7 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * La clase AddressBook representa una libreta de direcciones que contiene una lista de
- * entradas de direcciones.
+ * La clase AddressBook representa una libreta de direcciones que contiene una lista de entradas de direcciones.
  */
 public class AddressBook {
     private List<AddressEntry> entries;
@@ -35,11 +34,10 @@ public class AddressBook {
     }
 
     /**
-     * Busca y devuelve una lista de entradas de direcciones que coinciden con el apellido
-     * proporcionado.
+     * Busca y devuelve una lista de entradas de direcciones que coinciden con el apellido proporcionado.
      *
      * @param lastName El apellido a buscar.
-     * @return Una lista de entradas de direcciones que coinciden con el apellido.
+     * @return La primera entrada de dirección que coincide con el apellido, o null si no se encuentra ninguna.
      */
     public AddressEntry searchEntryByLastName(String lastName) {
         for (AddressEntry entry : entries) {
@@ -50,6 +48,12 @@ public class AddressBook {
         return null;
     }
   
+    /**
+     * Busca y devuelve una lista de entradas de direcciones que comienzan con el apellido proporcionado.
+     *
+     * @param lastName El apellido a buscar.
+     * @return Una lista de entradas de direcciones que comienzan con el apellido.
+     */
     public List<AddressEntry> searchEntriesByLastName(String lastName) {
         List<AddressEntry> matchingEntries = new ArrayList<>();
         for (AddressEntry entry : entries) {

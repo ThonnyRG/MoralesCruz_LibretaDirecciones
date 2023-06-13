@@ -7,6 +7,7 @@ public class Address {
     private String city;
     private String state;
     private String postalCode;
+
     /**
      * Constructor de la clase Address que acepta los valores para inicializar las variables.
      *
@@ -15,12 +16,13 @@ public class Address {
      * @param state      El estado de la dirección.
      * @param postalCode El código postal de la dirección.
      */
-  public Address(String street, String city, String state, String postalCode) {
+    public Address(String street, String city, String state, String postalCode) {
         this.street = street;
         this.city = city;
         this.state = state;
         this.postalCode = postalCode;
     }
+
     /**
      * Devuelve la calle de la dirección.
      *
